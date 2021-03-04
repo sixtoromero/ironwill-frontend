@@ -1,0 +1,233 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="wrapper fadeInDown">  
+  <div id="formContent">    
+    <div class="fadeIn first">
+      <img src="../../../assets/images/logo-trans.png" id="icon" alt="User Icon" />
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <h6>Correo electrónico</h6>
+          <div class="form-group">              
+            <input 
+              type="text" 
+              id="login"
+              [(ngModel)]="correo"
+              class="fadeIn second style-input" 
+              name="login" >            
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <h6>Contraseña</h6>
+          <div class="form-group">              
+            <input 
+              type="text"                 
+              [(ngModel)]="clave"
+              class="fadeIn second style-input" 
+              name="password">            
+          </div>
+        </div>
+      </div>
+    </div>    
+    <input 
+      type="button" 
+      class="fadeIn fourth buttoncss" 
+      (click)="login();"
+      value="Iniciar sesión">        
+    <!-- Remind Passowrd -->
+    <div id="formFooter">      
+      <button type="button" class="btn btn-outline-success" (click)="displayRegisterUser=true">Registrate</button>
+    </div>    
+
+  </div>
+</div>
+
+<p-dialog
+  header="Registro de Usuarios" 
+  [(visible)]="displayRegisterUser"
+  [modal]="true" 
+  [style]="{width: '80vw'}" 
+  [baseZIndex]="10000" 
+  [draggable]="false" 
+  [resizable]="false"
+  [closable]="false">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-success">        
+        <!-- <div class="card-header">
+          <h3 class="card-title">Lista de Facturas</h3>
+        </div> -->
+        <!-- <div class="card-body">          
+        </div> -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-success">
+                <!-- <div class="card-header">
+                    <h3 class="card-title">Registro de usuario</h3>
+                </div> -->
+                <div class="card-body">
+                    <form [formGroup]="myForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h6>Tipo de Documento</h6>
+                                    <div class="form-group">                                      
+                                      <select 
+                                          id="TipoDocumento"
+                                          class="form-control" 
+                                          formControlName="TipoDocumento"
+                                          [ngClass]="{ 'is-invalid': f.TipoDocumento.invalid && (f.TipoDocumento.dirty || f.TipoDocumento.touched) }">
+                                          <option value="">--seleccione--</option>
+                                          <option value="T">Tarjeta de Identidad</option>
+                                          <option value="C">Cédula de Ciudadanía</option>
+                                      </select>
+                                      <div *ngIf="f.TipoDocumento.errors && (f.TipoDocumento.dirty || f.TipoDocumento.touched)" class="invalid-feedback">
+                                        <div>El tipo de documento es requerido</div>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h6>Documento</h6>
+                                    <input
+                                        id="Documento"
+                                        type="text"
+                                        class="form-control"
+                                        formControlName="Documento"
+                                        [ngClass]="{ 'is-invalid': f.Documento.invalid && (f.Documento.dirty || f.Documento.touched) }"
+                                         />
+                                    <div *ngIf="f.Documento.errors && (f.Documento.dirty || f.Documento.touched)" class="invalid-feedback">
+                                        <div>El documento es requerido</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h6>Nombres</h6>
+                                    <input 
+                                        id="Nombres" 
+                                        type="text" 
+                                        class="form-control" 
+                                        formControlName="Nombres"
+                                        [ngClass]="{ 'is-invalid': f.Nombres.invalid && (f.Nombres.dirty || f.Nombres.touched) }"
+                                         />
+                                    <div *ngIf="f.Nombres.errors && (f.Nombres.dirty || f.Nombres.touched)" class="invalid-feedback">
+                                        <div>Los nombres son requerido</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h6>Dirección</h6>
+                                    <input 
+                                        id="Direccion" 
+                                        type="text"
+                                        class="form-control"
+                                        formControlName="Direccion"
+                                        [ngClass]="{ 'is-invalid': f.Direccion.invalid && (f.Direccion.dirty || f.Direccion.touched) }" />
+                                    <div *ngIf="f.Direccion.errors && (f.Direccion.dirty || f.Direccion.touched)" class="invalid-feedback">
+                                        <div>La dirección es requerido</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h6>Celular</h6>
+                                    <input 
+                                        id="Celular" 
+                                        type="text"
+                                        class="form-control"
+                                        formControlName="Celular"
+                                        [ngClass]="{ 'is-invalid': f.Celular.invalid && (f.Celular.dirty || f.Celular.touched) }" />                                          
+                                    <div *ngIf="f.Celular.errors && (f.Celular.dirty || f.Celular.touched)" class="invalid-feedback">
+                                      <div>el celular es requerido</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                  <h6>Correo</h6>
+                                  <input 
+                                      id="Correo" 
+                                      type="text"
+                                      class="form-control"
+                                      formControlName="Correo"
+                                      [ngClass]="{ 'is-invalid': f.Correo.invalid && (f.Correo.dirty || f.Correo.touched) }" />                                          
+                                  <div *ngIf="f.Correo.errors && (f.Correo.dirty || f.Correo.touched)" class="invalid-feedback">
+                                    <div>el correo es requerido</div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                                <h6>Clave</h6>
+                                <input 
+                                    id="Clave" 
+                                    type="password"
+                                    class="form-control"
+                                    formControlName="Clave"
+                                    [ngClass]="{ 'is-invalid': f.Clave.invalid && (f.Clave.dirty || f.Clave.touched) }" />                                          
+                                <div *ngIf="f.Clave.errors && (f.Clave.dirty || f.Clave.touched)" class="invalid-feedback">
+                                  <div>La contraseña es requerida</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <h6>Género</h6>
+                            <select 
+                                id="Genero"
+                                class="form-control" 
+                                formControlName="Genero"
+                                [ngClass]="{ 'is-invalid': f.Genero.invalid && (f.Genero.dirty || f.Genero.touched) }">
+                              <option value="">--seleccione--</option>
+                              <option value="F">Femenino</option>
+                              <option value="M">Masculino</option>
+                            </select>
+                            <div *ngIf="f.Genero.errors && (f.Genero.dirty || f.Genero.touched)" class="invalid-feedback">
+                              <div>El género es requerido</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                              <h6>Fecha Nacimiento</h6>
+                              <input 
+                                id="Fecha_Nacimiento" 
+                                type="date"
+                                class="form-control"
+                                formControlName="Fecha_Nacimiento"
+                                [ngClass]="{ 'is-invalid': f.Fecha_Nacimiento.invalid && (f.Fecha_Nacimiento.dirty || f.Fecha_Nacimiento.touched) }"
+                              />
+                              <div *ngIf="f.Fecha_Nacimiento.errors && (f.Fecha_Nacimiento.dirty || f.Fecha_Nacimiento.touched)" class="invalid-feedback">
+                                <div>La fecha es requerida</div>
+                              </div>
+                          </div>
+                       </div>
+                      </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p-footer>                
+    <button type="button" pButton (click)="displayRegisterUser=false;" label="Cerrar" class="ui-button-secondary"></button>            
+    <!-- [disabled]="!myForm.valid" -->
+    <button type="button" pButton icon="pi pi-check" (click)="saveUser();" label="Registrarme"></button>    
+  </p-footer>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+<ngx-ui-loader></ngx-ui-loader>
+<p-toast></p-toast>

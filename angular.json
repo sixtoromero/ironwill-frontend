@@ -1,12 +1,9 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "cli": {
-    "analytics": "9cb0363f-b9ea-45c3-bf42-ae5018c8df20"
-  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ironwill": {
+    "LaMCempty": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ironwill",
+            "outputPath": "dist/LaMCempty",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -31,9 +28,16 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/primeicons/primeicons.css",
+              "./node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "./node_modules/primeng/resources/primeng.min.css",
+              "./node_modules/quill/dist/quill.core.css", 
+	            "./node_modules/quill/dist/quill.snow.css", 
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/quill/dist/quill.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -46,6 +50,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
+              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -68,18 +73,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ironwill:build"
+            "browserTarget": "LaMCempty:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ironwill:build:production"
+              "browserTarget": "LaMCempty:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ironwill:build"
+            "browserTarget": "LaMCempty:build"
           }
         },
         "test": {
@@ -116,16 +121,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ironwill:serve"
+            "devServerTarget": "LaMCempty:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ironwill:serve:production"
+              "devServerTarget": "LaMCempty:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "ironwill"
+  "defaultProject": "LaMCempty",
+  "cli": {
+    "analytics": "85801f61-6b61-4d72-aa51-635f6981e4fe"
+  }
 }
