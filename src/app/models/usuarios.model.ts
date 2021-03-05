@@ -16,6 +16,8 @@ export class UsuarioModel implements Deserializable {
     public Estado: boolean;
     public Fecha_Creacion: Date;
 
+    public token: string;
+
     deserialize(input: any) {
         Object.assign(this, input);
         return this;

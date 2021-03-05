@@ -20,6 +20,12 @@ export class UserService {
 
     endPoint = `${environment.apiURL}/Usuarios`;
 
+    private usuarioSubject: BehaviorSubject<UsuarioModel>
+
+    public get usuarioData(): UsuarioModel {
+        return this.usuarioSubject.value;
+    }
+
     constructor(private _http: HttpClient) { }
     
 

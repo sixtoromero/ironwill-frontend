@@ -6,6 +6,7 @@ import { finalize } from 'rxjs/operators';
 import { GeneralService } from 'src/app/services/general.service';
 import { UsuarioModel } from '../../models/usuarios.model';
 import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,    
     private ngxService: NgxUiLoaderService,
     private _service: UserService,
-    private _general: GeneralService
+    private _general: GeneralService,
+    private router: Router
   ) {
     this.myForm = fb.group({
       TipoDocumento: ['', [Validators.required]],
@@ -45,6 +47,12 @@ export class LoginComponent implements OnInit {
       Genero: ['', [Validators.required]],
       Fecha_Nacimiento: ['', [Validators.required]]
     });
+    
+    this.iUser = JSON.parse(localStorage.getItem('token_ironwill'));
+    if (this.iUser !== null) {
+      this.router.navigate(['/']);
+    }
+
   }
 
   get f() {
@@ -75,8 +83,8 @@ export class LoginComponent implements OnInit {
     .pipe(finalize(() => this.ngxService.stop()))
     .subscribe(response => {
       if (response["IsSuccess"]) {        
-        this._general.showSuccess('Listo para iniciar sesión');
-        console.log(response["Data"]);
+        localStorage.setItem('token_ironwill', JSON.stringify(response["Data"]));
+        this.router.navigate(['/']);
       } else {        
         this._general.showError(`Ha ocurrido un error inesperado: ${response["Message"]}`);
       }

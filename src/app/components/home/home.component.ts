@@ -7,57 +7,35 @@ import { TotalesByCamareroModel } from 'src/app/models/totalesbycamarero.model';
 import { BillService } from 'src/app/services/bill.service';
 import { CustomerService } from 'src/app/services/customer.service';
 import { GeneralService } from 'src/app/services/general.service';
+import { UsuarioModel } from '../../models/usuarios.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  providers: [BillService, CustomerService, GeneralService, MessageService, ConfirmationService]
+  providers: [GeneralService, MessageService, ConfirmationService]
 })
 export class HomeComponent implements OnInit {
 
   msgs: Message[] = [];
-  reportTotales: TotalesByCamareroModel[] = [];
-  displayModalBill: boolean = false;
-  customers: ClienteModel[] = [];
+  user: UsuarioModel = new UsuarioModel();
 
-  constructor(
-    private _service: BillService,
-    private _customerService: CustomerService,
+  constructor(        
     private _general: GeneralService,    
     private confirmationService: ConfirmationService,
-    private ngxService: NgxUiLoaderService
-  ) { }
+    private ngxService: NgxUiLoaderService,
+    private router: Router
+  ) { 
+
+    debugger;
+    this.user = JSON.parse(localStorage.getItem('token_ironwill'));
+    if (this.user === null) {
+      this.router.navigate(['login']);
+    }
+  }
 
   ngOnInit(): void {
-    this.getViewFacetura();
-    this.getClientesMayorCompra();
-  }
 
-  getViewFacetura() {
-    this.ngxService.start();
-    this._service.getTotalesByCamarero()
-    .pipe(finalize(() => this.ngxService.stop()))
-    .subscribe(response => {
-      if (response["IsSuccess"]) {
-        this.reportTotales = response["Data"] as TotalesByCamareroModel[];
-        console.log('Reporte', this.reportTotales)
-      }
-    }, error => {
-      this._general.showError('Ha ocurrido un error inesperado.');
-    });
-  }
-
-  getClientesMayorCompra() {
-    this.ngxService.start();
-    this._customerService.getClientesMayorCompra()
-    .pipe(finalize(() => this.ngxService.stop()))
-    .subscribe(response => {
-      if (response["IsSuccess"]) {
-        this.customers = response["Data"] as ClienteModel[];
-      }
-    }, error => {
-      this._general.showError('Ha ocurrido un error inesperado.');
-    });
   }
 
 }
