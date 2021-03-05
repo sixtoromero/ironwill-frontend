@@ -9,6 +9,11 @@
         [paginator]="true" 
         stateStorage="local" 
         stateKey="statedemo-local">
+        <ng-template pTemplate="caption">
+            <div style="text-align: right;">
+                <button pButton label="Agendar" class="p-button-outlined" icon="pi pi-filter-slash" (click)="displayRegisterAgenda = true"></button>
+            </div>
+        </ng-template>
         <ng-template pTemplate="header">
             <tr>                                        
                 <th pSortableColumn="IdAgenda">Id Agenda<p-sortIcon field="IdAgenda"></p-sortIcon></th>
@@ -89,6 +94,87 @@
     </p-table>
 </div>
 
-<!-- <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
-<ngx-ui-loader></ngx-ui-loader>
-<p-toast></p-toast> -->
+<p-dialog
+  header="Agendar" 
+  [(visible)]="displayRegisterAgenda"
+  [modal]="true" 
+  [style]="{width: '80vw'}" 
+  [baseZIndex]="10000" 
+  [draggable]="false" 
+  [resizable]="false"
+  [closable]="false">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-success">                
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-success">                
+                <div class="card-body">
+                    <form [formGroup]="myForm">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <h6>Tipo de Ejercicio</h6>
+                                    <div class="form-group">                                      
+                                      <select 
+                                          id="IdTipoEjercicio"
+                                          class="form-control" 
+                                          formControlName="IdTipoEjercicio"
+                                          [ngClass]="{ 'is-invalid': f.IdTipoEjercicio.invalid && (f.IdTipoEjercicio.dirty || f.IdTipoEjercicio.touched) }">
+                                          <option value="">--seleccione--</option>                                          
+                                      </select>
+                                      <div *ngIf="f.IdTipoEjercicio.errors && (f.IdTipoEjercicio.dirty || f.IdTipoEjercicio.touched)" class="invalid-feedback">
+                                        <div>El tipo de ejercicio es requerido</div>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <h6>Fecha</h6>
+                                    <input
+                                        id="Fecha"
+                                        type="text"
+                                        class="form-control"
+                                        formControlName="Fecha"
+                                        [ngClass]="{ 'is-invalid': f.Fecha.invalid && (f.Fecha.dirty || f.Fecha.touched) }"
+                                         />
+                                    <div *ngIf="f.Fecha.errors && (f.Fecha.dirty || f.Fecha.touched)" class="invalid-feedback">
+                                        <div>La fecha es requerida</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <h6>Hora</h6>
+                                    <input 
+                                        id="Hora" 
+                                        type="time" 
+                                        class="form-control" 
+                                        formControlName="Hora"
+                                        [ngClass]="{ 'is-invalid': f.Hora.invalid && (f.Hora.dirty || f.Hora.touched) }" />                                    
+                                    <div *ngIf="f.Hora.errors && (f.Hora.dirty || f.Hora.touched)" class="invalid-feedback">
+                                        <div>La hora es requerida</div>
+                                    </div>
+                                </div>
+                            </div>                    
+                      </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p-footer>                
+    <button type="button" pButton (click)="displayRegisterAgenda=false;" label="Cerrar" class="ui-button-secondary"></button>            
+    <!-- [disabled]="!myForm.valid" -->
+    <!-- (click)="saveUser();" -->
+    <button type="button" pButton icon="pi pi-check"  label="Agendar"></button>
+  </p-footer>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+<!-- <ngx-ui-loader></ngx-ui-loader> -->
+<p-toast></p-toast>
