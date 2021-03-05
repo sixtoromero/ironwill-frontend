@@ -1,6 +1,16 @@
 <!-- 
     Según el perfil se debe mostrar el componente si es Deportista 
     se muestra athlete de lo contrario el otro perfil. -->
+<app-navbar></app-navbar>
+
+<div [ngSwitch]="user.IdPerfil">
+    <div *ngSwitchCase="1">
+        <app-history-athlete [user]="user"></app-history-athlete>
+    </div>    
+    <!-- <div *ngSwitchDefault>
+        ...
+    </div> -->
+ </div>
 
 <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
 <ngx-ui-loader></ngx-ui-loader>

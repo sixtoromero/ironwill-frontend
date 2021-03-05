@@ -1,0 +1,94 @@
+<div class="row">
+    <p-toast position="center" key="tl"></p-toast>
+    <p-table 
+        #dt1
+        [value]="listHistory"
+        dataKey="IdFactura"
+        styleClass="p-datatable-customers"
+        [rows]="5"
+        [paginator]="true" 
+        stateStorage="local" 
+        stateKey="statedemo-local">
+        <ng-template pTemplate="header">
+            <tr>                                        
+                <th pSortableColumn="IdAgenda">Id Agenda<p-sortIcon field="IdAgenda"></p-sortIcon></th>
+                <th pSortableColumn="Deportista">Deportista<p-sortIcon field="Deportista"></p-sortIcon></th>
+                <th pSortableColumn="Ejercicio">Ejercicio<p-sortIcon field="Ejercicio"></p-sortIcon></th>
+                <th pSortableColumn="Fecha">Fecha<p-sortIcon field="Fecha"></p-sortIcon></th>
+                <th pSortableColumn="Hora">Hora<p-sortIcon field="Hora"></p-sortIcon></th>
+            </tr>
+            <tr>
+                <th>
+                    <input
+                        pInputText
+                        type="text"
+                        (input)="dt1.filter($event.target.value, 'IdAgenda', 'contains')" 
+                        [value]="dt1.filters['IdAgenda']?.value" 
+                        placeholder="Buscar por Id" 
+                        class="p-column-filter">
+                </th>
+                <th>
+                    <input
+                        pInputText
+                        type="text"
+                        (input)="dt1.filter($event.target.value, 'Deportista', 'contains')"
+                        [value]="dt1.filters['Deportista']?.value"
+                        placeholder="Buscar por Deportista"
+                        class="p-column-filter">
+                </th>
+                <th>
+                    <input 
+                        pInputText type="text" 
+                        (input)="dt1.filter($event.target.value, 'Ejercicio', 'contains')" 
+                        [value]="dt1.filters['Ejercicio']?.value" 
+                        placeholder="Buscar por Ejercicio" 
+                        class="p-column-filter">
+                </th>
+                <th>
+                    <input 
+                        pInputText type="text" 
+                        (input)="dt1.filter($event.target.value, 'Fecha', 'contains')" 
+                        [value]="dt1.filters['Fecha']?.value" 
+                        placeholder="Buscar por Fecha" 
+                        class="p-column-filter">
+                </th>
+                <th>
+                    <input 
+                        pInputText type="text" 
+                        (input)="dt1.filter($event.target.value, 'Hora', 'contains')" 
+                        [value]="dt1.filters['Hora']?.value" 
+                        placeholder="Buscar por Hora" 
+                        class="p-column-filter">
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-listHistory>
+            <tr [pSelectableRow]="listHistory">
+                <td>                  
+                    {{listHistory.IdAgenda}}
+                </td>
+                <td>
+                    {{listHistory.Deportista}}
+                </td>
+                <td>
+                    {{listHistory.Ejercicio}}
+                </td>
+                <td>
+                    {{listHistory.Fecha}}
+                </td>
+                <td>
+                    {{listHistory.Hora}}
+                </td>                
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="4">No se encontraron registros.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<!-- <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+<ngx-ui-loader></ngx-ui-loader>
+<p-toast></p-toast> -->

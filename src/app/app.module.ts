@@ -49,12 +49,13 @@ import { BillComponent } from './components/bill/bill.component';
 import { APP_ROUTING } from './app.routes';
 import { LoginComponent } from './components/login/login.component';
 import { AthleteComponent } from './components/shared/athlete/athlete.component';
+import { HistoryAthleteComponent } from './components/shared/history-athlete/history-athlete.component';
 
 @NgModule({
   declarations: [
     AppComponent,    
     HomeComponent, 
-    NavbarComponent, ChefComponent, WaiterComponent, CustomerComponent, TableComponent, BillComponent, LoginComponent, AthleteComponent
+    NavbarComponent, ChefComponent, WaiterComponent, CustomerComponent, TableComponent, BillComponent, LoginComponent, AthleteComponent, HistoryAthleteComponent
   ],
   imports: [
     BrowserModule,
