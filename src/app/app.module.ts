@@ -50,12 +50,13 @@ import { APP_ROUTING } from './app.routes';
 import { LoginComponent } from './components/login/login.component';
 import { AthleteComponent } from './components/shared/athlete/athlete.component';
 import { HistoryAthleteComponent } from './components/shared/history-athlete/history-athlete.component';
+import { ScheduleComponent } from './components/schedule/schedule.component';
 
 @NgModule({
   declarations: [
     AppComponent,    
     HomeComponent, 
-    NavbarComponent, ChefComponent, WaiterComponent, CustomerComponent, TableComponent, BillComponent, LoginComponent, AthleteComponent, HistoryAthleteComponent
+    NavbarComponent, ChefComponent, WaiterComponent, CustomerComponent, TableComponent, BillComponent, LoginComponent, AthleteComponent, HistoryAthleteComponent, ScheduleComponent
   ],
   imports: [
     BrowserModule,

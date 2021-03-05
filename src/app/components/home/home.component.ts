@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
 
   msgs: Message[] = [];
   user: UsuarioModel = new UsuarioModel();
-  liagenda: AgendaModel[] = [];
+  
 
   constructor(        
     private _general: GeneralService,    
