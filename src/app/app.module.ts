@@ -25,6 +25,7 @@ import { VirtualScrollerModule } from 'primeng/virtualscroller'
 import {TableModule} from 'primeng/table';
 import { ToolbarModule } from 'primeng/toolbar';
 import { DropdownModule } from 'primeng/dropdown';
+import { CalendarModule } from 'primeng/calendar';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -38,12 +39,6 @@ import { NgxCurrencyModule } from "ngx-currency";
 import { InterceptorService } from './interceptors/interceptor.service';
 import { NavbarComponent } from './components/shared/navbar/navbar.component'
 import { HomeComponent  } from './components/home/home.component';
-import { ChefComponent } from './components/chef/chef.component';
-import { WaiterComponent } from './components/waiter/waiter.component';
-import { CustomerComponent } from './components/customer/customer.component';
-import { TableComponent } from './components/table/table.component';
-import { BillComponent } from './components/bill/bill.component';
-
 
 
 import { APP_ROUTING } from './app.routes';
@@ -52,11 +47,13 @@ import { AthleteComponent } from './components/shared/athlete/athlete.component'
 import { HistoryAthleteComponent } from './components/shared/history-athlete/history-athlete.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,    
     HomeComponent, 
-    NavbarComponent, ChefComponent, WaiterComponent, CustomerComponent, TableComponent, BillComponent, LoginComponent, AthleteComponent, HistoryAthleteComponent, ScheduleComponent
+    NavbarComponent, LoginComponent, AthleteComponent, HistoryAthleteComponent, ScheduleComponent
   ],
   imports: [
     BrowserModule,
@@ -88,6 +85,7 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
     ToolbarModule,
     DropdownModule,
     NgxSpinnerModule,
+    CalendarModule,
     NgxCurrencyModule,
     
   ],

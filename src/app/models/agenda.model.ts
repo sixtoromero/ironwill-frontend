@@ -2,6 +2,7 @@ import { Deserializable } from './deserializable.model';
 
 export class AgendaModel implements Deserializable {    
     public IdAgenda: number;
+    public IdUsuario: number;
     public IdTipoEjercicio: number;    
     public Fecha: Date;
     public Hora: string;

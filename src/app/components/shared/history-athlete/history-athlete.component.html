@@ -79,7 +79,7 @@
                     {{listHistory.Ejercicio}}
                 </td>
                 <td>
-                    {{listHistory.Fecha}}
+                    {{listHistory.Fecha | date }}
                 </td>
                 <td>
                     {{listHistory.Hora}}
@@ -112,7 +112,7 @@
                 <div class="card-body">
                     <form [formGroup]="myForm">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-8">
                                 <div class="form-group">
                                     <h6>Tipo de Ejercicio</h6>
                                     <div class="form-group">                                      
@@ -121,7 +121,8 @@
                                           class="form-control" 
                                           formControlName="IdTipoEjercicio"
                                           [ngClass]="{ 'is-invalid': f.IdTipoEjercicio.invalid && (f.IdTipoEjercicio.dirty || f.IdTipoEjercicio.touched) }">
-                                          <option value="">--seleccione--</option>                                          
+                                          <option value="">--seleccione--</option>
+                                          <option *ngFor="let item of liTiposDep" [value]="item.IdTipoEjercicio">{{ item.Ejercicio }}</option>
                                       </select>
                                       <div *ngIf="f.IdTipoEjercicio.errors && (f.IdTipoEjercicio.dirty || f.IdTipoEjercicio.touched)" class="invalid-feedback">
                                         <div>El tipo de ejercicio es requerido</div>
@@ -129,22 +130,23 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-2">
                                 <div class="form-group">
-                                    <h6>Fecha</h6>
-                                    <input
-                                        id="Fecha"
-                                        type="text"
-                                        class="form-control"
-                                        formControlName="Fecha"
-                                        [ngClass]="{ 'is-invalid': f.Fecha.invalid && (f.Fecha.dirty || f.Fecha.touched) }"
-                                         />
+                                    <h6>Fecha</h6>                                    
+                                         <!-- dateFormat="dd.mm.yy" -->
+                                         <p-calendar
+                                            [readonlyInput]="true"
+                                            class="datapicker-width"
+                                            formControlName="Fecha"
+                                            [ngClass]="{ 'is-invalid': f.Fecha.invalid && (f.Fecha.dirty || f.Fecha.touched) }">
+                                        </p-calendar>                                         
+
                                     <div *ngIf="f.Fecha.errors && (f.Fecha.dirty || f.Fecha.touched)" class="invalid-feedback">
                                         <div>La fecha es requerida</div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <h6>Hora</h6>
                                     <input 
@@ -171,7 +173,7 @@
     <button type="button" pButton (click)="displayRegisterAgenda=false;" label="Cerrar" class="ui-button-secondary"></button>            
     <!-- [disabled]="!myForm.valid" -->
     <!-- (click)="saveUser();" -->
-    <button type="button" pButton icon="pi pi-check"  label="Agendar"></button>
+    <button type="button" pButton icon="pi pi-check" (click)="insert();" label="Agendar"></button>
   </p-footer>
 </p-dialog>
 
