@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "LaMCempty": {
+    "IronWill": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/LaMCempty",
+            "outputPath": "dist/IronWill",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -73,18 +73,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "LaMCempty:build"
+            "browserTarget": "IronWill:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "LaMCempty:build:production"
+              "browserTarget": "IronWill:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "LaMCempty:build"
+            "browserTarget": "IronWill:build"
           }
         },
         "test": {
@@ -121,18 +121,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "LaMCempty:serve"
+            "devServerTarget": "IronWill:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "LaMCempty:serve:production"
+              "devServerTarget": "IronWill:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "LaMCempty",
+  "defaultProject": "IronWill",
   "cli": {
     "analytics": "85801f61-6b61-4d72-aa51-635f6981e4fe"
   }
